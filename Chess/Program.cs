@@ -1,12 +1,13 @@
 ﻿using Chess.Piece;
+using Chess.Board;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Piece pawn = new Pawn("pawn", new int[] {0, 0});
+        Piece pawn = new Pawn("pawn", new Coordinate(0, 0));
         pawn.GetCoords();
-        pawn.Move(new int[] { 0, 1});
+        pawn.Move(new Coordinate(0, 3));
         pawn.GetCoords();
         Console.ReadLine();
     }

@@ -1,15 +1,17 @@
 ﻿using System;
+using Chess.Board;
+
 namespace Chess.Piece
 {
     public class Pawn : Piece
     {
-        public Pawn(string name, int[] coords) : base(name, coords)
+        public Pawn(string name, Coordinate coords) : base(name, coords)
         {
         }
 
-        public override bool IsValid(int[] newCoords)
+        public override bool IsValid(Coordinate newCoords)
         {
-            if (Coords[1] + 1 == newCoords[1] && Coords[0] == newCoords[0])
+            if (Coords.x == newCoords.x && newCoords.y - Coords.y == 1)
             {
                 return true;
             }
