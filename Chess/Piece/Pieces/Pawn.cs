@@ -1,24 +1,16 @@
-﻿using System;
-using Chess.Board;
+﻿using Chess.Board;
 
 namespace Chess.Piece
 {
-    public class Pawn : Piece
+    public class Pawn : PieceBase
     {
-        public Pawn(string name, Coordinate coords) : base(name, coords)
+        public Pawn((PieceColor, PieceName) pieceType, Coordinate coords) : base(pieceType, coords)
         {
         }
 
         public override bool IsValid(Coordinate newCoords)
         {
-            if (Coords.x == newCoords.x && newCoords.y - Coords.y == 1)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return Coords.x == newCoords.x && Math.Abs(newCoords.y - Coords.y) == 1;
         }
     }
 }
