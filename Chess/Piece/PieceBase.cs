@@ -2,21 +2,24 @@
 
 namespace Chess.Piece
 {
-    public abstract class Piece
+    public abstract class PieceBase : IPieceType
     {
-        public Piece(string name, Coordinate coords)
-        {
-            Name = name;
-            Coords.x = coords.x;
-            Coords.y = coords.y;
-        }
-
-        public string Name;
         public Coordinate Coords;
 
-        public void GetCoords()
+        public PieceColor Color { get; set; }
+        public PieceName Name { get; set; }
+
+        public PieceBase((PieceColor, PieceName) pieceType, Coordinate coords)
         {
-            Console.WriteLine($"{Name} are in X:{Coords.x} Y:{Coords.y}");
+            Color = pieceType.Item1;
+            Name = pieceType.Item2;
+            Coords = coords;
+        }
+        
+        public Coordinate GetCoords()
+        {
+            Console.WriteLine($"{Color} {Name} are in X:{Coords.x} Y:{Coords.y}");
+            return Coords;
         }
 
         private void SetCoords(Coordinate newCoords)
@@ -38,10 +41,11 @@ namespace Chess.Piece
         }
 
         public abstract bool IsValid(Coordinate newCoords);
- 
-        //otra pieza en el camino
-        //pieza del mismo color en casilla de llegada
-        //no es un movimiento posible
+
+        public int GetPieceType()
+        {
+            return (int)Color * (int)Name;
+        }
     }
 }
 
