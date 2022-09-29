@@ -2,13 +2,14 @@
 
 namespace Chess.Services
 {
-    public class PositionController
+    public class PositionService
     {
         private BoardBase _board;
         private PieceService _piecesSet;
         private List<(int, int)> _positionsSet = new List<(int, int)>();
+        private List<Coordinate> _coordinatesSet = new List<Coordinate>();
 
-        public PositionController(BoardBase board, PieceService piecesSet)
+        public PositionService(BoardBase board, PieceService piecesSet)
         {
             _board = board;
             _piecesSet = piecesSet;
@@ -28,10 +29,28 @@ namespace Chess.Services
             }
         }
 
+        private void PositionsToCoordinates()
+        {
+            foreach(var position in _positionsSet)
+            {
+                Coordinate coords;
+                coords.x = position.Item1;
+                coords.y = position.Item2;
+
+                _coordinatesSet.Add(coords);
+            }
+        }
+
         public List<(int, int)> GetPositionSet()
         {
             CreateRandomPositons();
             return _positionsSet;
+        }
+
+        public List<Coordinate> GetCoordinatesSet()
+        {
+            PositionsToCoordinates();
+            return _coordinatesSet;
         }
     }
 }
