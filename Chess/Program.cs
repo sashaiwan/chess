@@ -6,7 +6,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        BoardBase board = new(4);
+        BoardBase board = new(8);
         PieceService pieceService = new();
         PositionService positionService = new(board, pieceService);
 
@@ -29,8 +29,12 @@ class Program
             Console.WriteLine($"x: {coord.x} y: {coord.y}");
         }
 
-        Pawn pawn = new(pieceService.Pieces[0], coords[0]);
-        pawn.GetCoords();
+        PieceFactory pieceFactory = new(piecesSet, coords);
+        var pieces = pieceFactory.GetPieces();
+        foreach (PieceBase piece in pieces)
+        {
+            piece.GetCoords();
+        }
 
         Console.ReadLine();
     }

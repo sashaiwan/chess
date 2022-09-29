@@ -8,12 +8,14 @@ namespace Chess.Piece
 
         public PieceColor Color { get; set; }
         public PieceName Name { get; set; }
+        public int PieceType;
 
         public PieceBase((PieceColor, PieceName) pieceType, Coordinate coords)
         {
             Color = pieceType.Item1;
             Name = pieceType.Item2;
             Coords = coords;
+            PieceType = (int)Color * (int)Name;
         }
         
         public Coordinate GetCoords()
@@ -44,7 +46,7 @@ namespace Chess.Piece
 
         public int GetPieceType()
         {
-            return (int)Color * (int)Name;
+            return PieceType;
         }
     }
 }

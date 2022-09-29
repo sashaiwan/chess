@@ -1,6 +1,6 @@
 ﻿using Chess.Board;
 
-namespace Chess.Piece.Pieces
+namespace Chess.Piece
 {
     public class Queen : PieceBase
     {
